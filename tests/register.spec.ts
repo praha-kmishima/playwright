@@ -25,7 +25,7 @@ test.describe('会員登録機能のテスト', () => {
     await page.getByRole('textbox', { name: '氏名 必須' }).fill(TEST_USER.name);
     await page.getByText('一般会員').click();
 
-    // 登録実行
+    // 会員登録
     await page.getByRole('button', { name: '登録' }).click();
 
     // マイページで登録内容を確認
@@ -36,14 +36,14 @@ test.describe('会員登録機能のテスト', () => {
     await expect(page.getByRole('listitem').filter({ hasText: `氏名 ${TEST_USER.name}` })).toBeVisible();
     await expect(page.getByRole('listitem').filter({ hasText: '会員ランク 一般会員' })).toBeVisible();
     
-    // 未登録項目の確認
+    // 未登録の項目の確認
     await expect(page.getByRole('listitem').filter({ hasText: '住所 未登録' })).toBeVisible();
     await expect(page.getByRole('listitem').filter({ hasText: '電話番号 未登録' })).toBeVisible();
     await expect(page.getByRole('listitem').filter({ hasText: '性別 未登録' })).toBeVisible();
     await expect(page.getByRole('listitem').filter({ hasText: '生年月日 未登録' })).toBeVisible();
     await expect(page.getByRole('listitem').filter({ hasText: 'お知らせ 受け取らない' })).toBeVisible();
 
-    // 追加の機能が存在することを確認
+    // アイコン設定と退会ボタンがあることを確認
     await expect(page.getByText('アイコン設定')).toBeVisible();
     await expect(page.getByText('退会する')).toBeVisible();
   });
